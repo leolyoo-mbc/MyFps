@@ -6,7 +6,7 @@ using Unity.Cinemachine;
 namespace MyFps
 {
     [RequireComponent(typeof(Collider))]
-    public class WeaponDiscoveryEvent : MonoBehaviour
+    public class BFirstTrigger : MonoBehaviour
     {
         #region Variables
         [Header("References")]
@@ -77,7 +77,7 @@ namespace MyFps
                 {
                     originalFOV = cmCamera.Lens.FieldOfView;
                     // FOV를 20 줄여서 줌인 효과 적용
-                    StartCoroutine(ChangeFOVSmoothly(cmCamera, originalFOV, originalFOV - 20f, 0.5f));
+                    StartCoroutine(ChangeFOVSmoothly(cmCamera, originalFOV, originalFOV - 30f, 0.5f));
                 }
 
                 // 동시에 시점 회전 (끝날 때까지 대기)

@@ -17,9 +17,7 @@ namespace MyFps
         #endregion
 
         #region Unity Event Method
-
         #endregion
-
 
         #region Custom Method
         public void OnFocus()
