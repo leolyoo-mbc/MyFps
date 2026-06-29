@@ -19,7 +19,7 @@ namespace MyFps
 
         // 중복 실행을 막기 위한 플래그
         private bool hasTriggered = false;
-        #endregion
+        #endregion  
 
         #region Unity Event Method
         private void Awake()
