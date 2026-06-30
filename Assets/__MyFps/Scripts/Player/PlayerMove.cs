@@ -43,7 +43,6 @@ namespace MyFps
             GravityAndJump();
 
             Move();
-
         }
         #endregion
 

@@ -5,6 +5,7 @@ using UnityEngine.UI; // UI(Image)를 다루기 위해 추가
 namespace MyFps
 {
     [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(CharacterInput))]
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
         #region Variables
@@ -22,12 +23,16 @@ namespace MyFps
         [Header("Audio")]
         private AudioSource audioSource;
         [SerializeField] private AudioClip[] hurtSounds; // 3개의 사운드를 넣을 배열
+
+        [SerializeField] private SceneFader fader;
+        private CharacterInput playerInput;
         #endregion
 
         #region Unity Event Method
         void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            playerInput = GetComponent<CharacterInput>();
 
             currentHealth = maxHealth;
 
@@ -53,9 +58,19 @@ namespace MyFps
 
             if (currentHealth <= 0)
             {
-                isDead = true;
-                // TODO: 5번 과제 (게임오버 씬 구성 및 이동)
+                Die();
             }
+        }
+
+        private void Die()
+        {
+            isDead = true;
+
+            //플레이어 조작 비활성화
+            if (playerInput != null) playerInput.enabled = false;
+
+            // 게임오버 씬으로 이동
+            fader.FadeTo("GameOver");
         }
 
         // 데미지 사운드 3개 중 1개 랜덤 발생

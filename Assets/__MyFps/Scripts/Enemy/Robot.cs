@@ -133,12 +133,12 @@ namespace MyFps
         public void TakeDamage(float damage)
         {
             if (isDead) return;
-
+            print("아야!!");
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                animator.SetInteger(EnemyStateHash, 3);
                 isDead = true;
+                animator.SetInteger(EnemyStateHash, 3);
             }
         #endregion
         }
