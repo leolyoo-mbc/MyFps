@@ -18,6 +18,7 @@ namespace MyFps
         // 적중 판정 Ray를 쏠 기준
         [SerializeField] private Transform cameraRoot;
         [SerializeField] private float maxRange = 100f;
+        [SerializeField] private LayerMask hitLayer = ~0; // 기본적으로 모든 레이어와 충돌
 
         private PlayerStats stats;
 
@@ -61,17 +62,19 @@ namespace MyFps
             if (fireSound != null) audioSource.PlayOneShot(fireSound);
             if (muzzleFlash != null) muzzleFlash.Play();
 
-            if (Physics.Raycast(cameraRoot.position, cameraRoot.forward, out RaycastHit hitInfo, maxRange, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(cameraRoot.position, cameraRoot.forward, out RaycastHit hitInfo, maxRange, hitLayer, QueryTriggerInteraction.Ignore))
             {
-                if (hitInfo.collider.TryGetComponent<IDamageable>(out var target))
+                Collider hitCollider = hitInfo.collider;
+                if (hitCollider != null)
                 {
-                    target.TakeDamage(damage);
+                    IDamageable target = hitCollider.GetComponentInParent<IDamageable>();
+                    target?.TakeDamage(damage);
                 }
             }
-        }
         #endregion
 
 
 
+        }
     }
 }

@@ -1765,6 +1765,9 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1564017665}
   cameraRoot: {fileID: 305479051}
   maxRange: 100
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!82 &305479058
 AudioSource:
   m_ObjectHideFlags: 0
