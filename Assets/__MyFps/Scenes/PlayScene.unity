@@ -1760,9 +1760,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea114d87bd149d440a5b1c729d3aaf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
+  shootMode: 1
+  bulletPrefab: {fileID: 769498180740837075, guid: 67dc4308bf282854fa2ee561201bdf0c, type: 3}
   damage: 5
   fireSound: {fileID: 8300000, guid: 1f758930970131f4cbed9b4a8abff1ad, type: 3}
   muzzleFlash: {fileID: 1564017665}
+  hitImpactPrefab: {fileID: 3061015098213265699, guid: 8dab52b39bb64d44da252b3dbf79fe59, type: 3}
   cameraRoot: {fileID: 305479051}
   maxRange: 100
   hitLayer:
@@ -1780,7 +1783,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
