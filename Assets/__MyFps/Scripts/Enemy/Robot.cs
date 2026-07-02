@@ -1,6 +1,5 @@
-using System;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MyFps
 {
@@ -8,6 +7,9 @@ namespace MyFps
     [RequireComponent(typeof(CharacterController))]
     public class Robot : MonoBehaviour, IDamageable
     {
+        
+        public enum State { Idle = 0, Walking = 1, Attacking = 2, Dead = 3 }
+
         #region Variables
         [Header("Settings")]
         [SerializeField] private float moveSpeed = 0.5f;
@@ -27,6 +29,8 @@ namespace MyFps
 
         private float currentHealth;
         private bool isDead = false;
+
+        [SerializeField] private UnityEvent onDeath;
         #endregion
 
         #region Unity Event Method
@@ -36,6 +40,27 @@ namespace MyFps
             characterController = GetComponent<CharacterController>();
             attackCooldown = attackInterval;
             currentHealth = maxHealth;
+
+            // 인스펙터에 하드코딩(할당)되어 있지 않다면 동적으로 플레이어를 찾아 연결
+            FindTargetPlayer();
+        }
+
+        private void FindTargetPlayer()
+        {
+            if (targetPlayer == null)
+            {
+                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null)
+                {
+                    targetPlayer = playerObj.transform;
+                }
+                else
+                {
+                    // 태그가 없을 경우를 대비한 안전 장치 (PlayerMove 스크립트 기반 탐색)
+                    PlayerMove playerMove = FindAnyObjectByType<PlayerMove>();
+                    if (playerMove != null) targetPlayer = playerMove.transform;
+                }
+            }
         }
 
         private void Update()
@@ -43,7 +68,7 @@ namespace MyFps
             Vector3 moveDirection = Vector3.zero;
 
             // 죽은 상태면 충돌체를 끄고 리턴
-            if (animator.GetInteger(EnemyStateHash) == 3)
+            if (animator.GetInteger(EnemyStateHash) == (int)State.Dead)
             {
                 if (characterController != null) characterController.enabled = false;
                 return;
@@ -67,12 +92,12 @@ namespace MyFps
                 if (attackCooldown <= 0)
                 {
                     // 공격
-                    animator.SetInteger(EnemyStateHash, 2);
+                    animator.SetInteger(EnemyStateHash, (int)State.Attacking);
                 }
                 else
                 {
                     // 쿨타임 중: 공격 상태가 아니라면 대기 상태로 전환
-                    animator.SetInteger(EnemyStateHash, 0);
+                    animator.SetInteger(EnemyStateHash, (int)State.Idle);
                 }
             }
             else
@@ -80,7 +105,7 @@ namespace MyFps
                 animator.SetBool(IsAttackingHash, false);
                 // 이동
                 moveDirection = transform.forward * moveSpeed;
-                animator.SetInteger(EnemyStateHash, 1);
+                animator.SetInteger(EnemyStateHash, (int)State.Walking);
             }
 
             // 중력 적용 및 이동
@@ -133,12 +158,12 @@ namespace MyFps
         public void TakeDamage(float damage)
         {
             if (isDead) return;
-            print("아야!!");
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
                 isDead = true;
-                animator.SetInteger(EnemyStateHash, 3);
+                animator.SetInteger(EnemyStateHash, (int)State.Dead);
+                onDeath.Invoke();
             }
         #endregion
         }

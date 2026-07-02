@@ -14,14 +14,12 @@ namespace MyFps
         [SerializeField] private CharacterInput playerInput;
         [SerializeField] private GameObject robot;
         [SerializeField] private Transform look;
+        [SerializeField] private AudioSource defaultBGM;
+        [SerializeField] private AudioSource combatBGM;
 
         [Header("Camera Effect")]
         [SerializeField] private Transform playerCameraRoot;
         [SerializeField] private CinemachineCamera cmCamera;
-
-        [Header("Audio")]
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip enemyAppearSound;
 
         // 중복 실행을 막기 위한 플래그
         private bool hasTriggered = false;
@@ -68,9 +66,9 @@ namespace MyFps
 
             // 문 열기, 적 활성화 및 사운드 재생
             if (slidingDoor != null) slidingDoor.TargetOpenAmount = 1;
-
             if (robot != null) robot.SetActive(true);
-            if (audioSource != null && enemyAppearSound != null) audioSource.PlayOneShot(enemyAppearSound);
+            defaultBGM.Stop();
+            combatBGM.Play();
 
             // --- 시점 회전 및 확대 연출 시작 ---
             Quaternion originalRotation = Quaternion.identity;

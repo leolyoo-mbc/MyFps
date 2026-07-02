@@ -8,6 +8,7 @@ namespace MyFps
     public class AOpening : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private PlayerStatsData playerStats;
         [SerializeField] private CharacterInput playerInput;
         [SerializeField] private SceneFader fader;
         [SerializeField] private TMP_Text sequenceText;
@@ -21,6 +22,9 @@ namespace MyFps
         #region Unity Event Method
         private void Start()
         {
+            // 게임의 첫 오프닝 씬이 켜질 때 전역 데이터(SO)를 모두 0(초기값)으로 밀어줍니다!
+            if (playerStats != null) playerStats.AmmoCount = 0;
+
             sequenceText.gameObject.SetActive(false);
             StartCoroutine(OpeningSequence());
         }

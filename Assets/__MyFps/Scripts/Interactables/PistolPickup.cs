@@ -32,7 +32,7 @@ namespace MyFps
             if (extraCross != null) extraCross.SetActive(true);
         }
 
-        public void OnInteract()
+        public void OnInteract(GameObject interactor)
         {
             //-테이블 위의 총은 없어지고 - 비활성화
             gameObject.SetActive(false);

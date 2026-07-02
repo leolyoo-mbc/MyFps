@@ -59,7 +59,7 @@ namespace MyFps
                 lastCollider = currentCollider;
             }
 
-            if (input.IsInteracting) lastInteractable?.OnInteract();
+            if (input.IsInteracting) lastInteractable?.OnInteract(gameObject);
             input.IsInteracting = false;
         }
 

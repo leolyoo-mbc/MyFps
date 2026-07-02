@@ -13,7 +13,8 @@ namespace MyFps
         [SerializeField] private GameObject extraCross;
 
         [SerializeField] private GameObject ammoUI;
-        [SerializeField] private PlayerStats playerStats;
+        [SerializeField] private PlayerStatsData playerStats; // SO 참조 추가
+
         #endregion
 
         #region Unity Event Method
@@ -39,10 +40,12 @@ namespace MyFps
             if (extraCross != null) extraCross.SetActive(false);
         }
 
-        public void OnInteract()
+        public void OnInteract(GameObject interactor)
         {
             ammoUI.SetActive(true);
-            playerStats.AmmoCount += 7;
+            
+            // 싱글플레이이므로 바로 SO의 총알 개수를 증가시킵니다.
+            if (playerStats != null) playerStats.AmmoCount += 7;
 
             gameObject.SetActive(false);
         }

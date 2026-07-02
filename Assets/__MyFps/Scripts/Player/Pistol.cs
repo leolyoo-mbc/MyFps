@@ -3,7 +3,6 @@ using UnityEngine;
 namespace MyFps
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(AudioSource))]
     public class Pistol : MonoBehaviour
     {
 
@@ -13,8 +12,7 @@ namespace MyFps
         [SerializeField] private GameObject bulletPrefab;
 
         [SerializeField] private float damage = 5;
-        private AudioSource audioSource;
-        [SerializeField] private AudioClip fireSound;
+        [SerializeField] private AudioSource fireSound;
         [SerializeField] private ParticleSystem muzzleFlash;
         [SerializeField] private GameObject hitImpactPrefab;
         private Animator animator;
@@ -25,7 +23,7 @@ namespace MyFps
         [SerializeField] private float maxRange = 100f;
         [SerializeField] private LayerMask hitLayer = ~0; // 기본적으로 모든 레이어와 충돌
 
-        private PlayerStats stats;
+        [SerializeField] private PlayerStatsData stats;
 
         private static readonly int FireTriggerHash = Animator.StringToHash("FireTrigger");
         #endregion
@@ -33,10 +31,8 @@ namespace MyFps
         #region Unity Event Method
         private void Awake()
         {
-            audioSource = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
             input = GetComponentInParent<CharacterInput>();
-            stats = GetComponentInParent<PlayerStats>();
         }
 
         private void OnEnable()
@@ -49,7 +45,7 @@ namespace MyFps
         {
             if (input.isAttacking)
             {
-                if (stats.AmmoCount > 0)
+                if (stats != null && stats.AmmoCount > 0)
                 {
                     stats.AmmoCount--;
                     animator.SetTrigger(FireTriggerHash);
@@ -64,7 +60,7 @@ namespace MyFps
         #region Custom Method
         public void OnFire()
         {
-            if (fireSound != null) audioSource.PlayOneShot(fireSound);
+            if (fireSound != null) fireSound.Play();
             if (muzzleFlash != null) muzzleFlash.Play();
 
             if (shootMode == 0)

@@ -1,9 +1,11 @@
+using UnityEngine;
+
 namespace MyFps
 {
     public interface IInteractable
     {
         public abstract void OnFocus();
         public abstract void OnLostFocus();
-        public abstract void OnInteract();
+        public abstract void OnInteract(GameObject interactor);
     }
 }

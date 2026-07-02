@@ -58,7 +58,7 @@ namespace MyFps
             }
         }
 
-        public void OnInteract()
+        public void OnInteract(GameObject interactor)
         {
             if (doorCollider != null) doorCollider.enabled = false;
             isOpened = !isOpened;

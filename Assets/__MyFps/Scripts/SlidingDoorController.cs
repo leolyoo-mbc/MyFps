@@ -15,9 +15,7 @@ namespace MyFps
 
         [SerializeField] private float currentOpenAmount = 0f;
 
-        private AudioSource audioSource;
-
-        [SerializeField] private AudioClip slidingDoorSound;
+        private AudioSource slidingDoorSound;
 
         private float targetOpenAmout = 0f;
         #endregion
@@ -31,7 +29,7 @@ namespace MyFps
                 if (value != TargetOpenAmount)
                 {
                     targetOpenAmout = value;
-                    if (audioSource != null && slidingDoorSound != null) audioSource.PlayOneShot(slidingDoorSound);
+                    slidingDoorSound.Play();
                 }
             }
         } // 외부에서 여닫을 수 있도록 Public
@@ -41,7 +39,7 @@ namespace MyFps
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            audioSource = GetComponent<AudioSource>();
+            slidingDoorSound = GetComponent<AudioSource>();
         }
 
         private void Update()
