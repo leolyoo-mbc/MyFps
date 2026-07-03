@@ -47,7 +47,7 @@ namespace MyFps
             pauseUI.SetActive(!pauseUI.activeSelf);
             Time.timeScale = pauseUI.activeSelf ? 0f : 1f;
             Cursor.lockState = pauseUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = !pauseUI.activeSelf;
+            Cursor.visible = pauseUI.activeSelf;
         }
 
         // 버튼 컴포넌트에서 호출해야 하므로 public으로 만듭니다.
