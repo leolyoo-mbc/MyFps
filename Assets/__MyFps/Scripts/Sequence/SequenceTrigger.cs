@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Collider))]
 public class SequenceTrigger : MonoBehaviour
 {
     [Tooltip("부딪힐 대상의 태그")]
@@ -11,6 +12,13 @@ public class SequenceTrigger : MonoBehaviour
 
     [Header("순차적으로 대기하며 실행될 시퀀스")]
     public List<SequenceStep> sequenceSteps = new();
+
+    private Collider triggerCollider;
+
+    void Awake()
+    {
+        triggerCollider = GetComponent<Collider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +29,7 @@ public class SequenceTrigger : MonoBehaviour
             if (sequenceSteps.Count > 0)
             {
                 StartCoroutine(PlaySequenceRoutine());
+                triggerCollider.enabled = false;
             }
         }
     }
