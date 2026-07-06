@@ -203,7 +203,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.45
+  m_fontSize: 22.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.45
+  m_fontSize: 22.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29
+  m_fontSize: 31.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -894,7 +894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1912630549}
+      - m_Target: {fileID: 1912630548}
         m_TargetAssemblyTypeName: MyFps.SceneFader, Assembly-CSharp
         m_MethodName: FadeTo
         m_Mode: 5
@@ -1035,7 +1035,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1912630548}
+  - {fileID: 1912630549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1749544366
@@ -1134,6 +1134,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7586699571348626448, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
       propertyPath: m_Name
       value: SceneFader
@@ -1143,14 +1159,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
---- !u!4 &1912630548 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4221827471886321446, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
-  m_PrefabInstance: {fileID: 1912630547}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1912630549 stripped
+--- !u!114 &1912630548 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 64811779234053381, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7147729078212111417, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
   m_PrefabInstance: {fileID: 1912630547}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1159,6 +1170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3529f771c5ba042855b48599390daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.SceneFader
+--- !u!224 &1912630549 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+  m_PrefabInstance: {fileID: 1912630547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2080463023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1912630549}
+      - m_Target: {fileID: 1912630548}
         m_TargetAssemblyTypeName: MyFps.SceneFader, Assembly-CSharp
         m_MethodName: FadeTo
         m_Mode: 5

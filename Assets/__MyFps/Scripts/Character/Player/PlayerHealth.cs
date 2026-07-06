@@ -1,11 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI; // UI(Image)를 다루기 위해 추가
 
 namespace MyFps
 {
-    [RequireComponent(typeof(AudioSource))]
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
         #region Variables
