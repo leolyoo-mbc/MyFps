@@ -11,19 +11,12 @@ namespace MyFps
     /// 액션: 문을 연다
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
-    public class DoorCellOpen : MonoBehaviour, IInteractable
+    public class DoorCellOpen : MonoBehaviour, IInteractEffect, IDynamicActionText
     {
-
-
         #region Variables
         private Animator animator;
         private AudioSource audioSource;
-        [SerializeField] private GameObject actionUI;
-        [SerializeField] private TMP_Text actionText;
-
         [SerializeField] private Collider doorCollider;
-
-        [SerializeField] private GameObject extraCross;
 
         private bool isOpened;
 
@@ -32,7 +25,10 @@ namespace MyFps
         [SerializeField] private string InteractTextWhenClosed = "OPEN THE DOOR";
         [SerializeField] private string InteractTextWhenOpened = "CLOSE THE DOOR";
 
-        string IInteractable.ActionText => isOpened ? InteractTextWhenOpened : InteractTextWhenClosed;
+        public string GetActionText()
+        {
+            return isOpened ? InteractTextWhenOpened : InteractTextWhenClosed;
+        }
         #endregion
 
         #region Property
@@ -48,17 +44,7 @@ namespace MyFps
         #endregion
 
         #region Custom Method
-        //public void OnFocus()
-        //{
-        //    if (extraCross != null) extraCross.SetActive(true);
-        //    if (actionUI != null && actionText != null)
-        //    {
-        //        actionText.SetText(isOpened ? InteractTextWhenOpened : InteractTextWhenClosed);
-        //        actionUI.SetActive(true);
-        //    }
-        //}
-
-        public void OnInteract(GameObject interactor)
+        public void ExecuteEffect(GameObject interactor)
         {
             if (doorCollider != null) doorCollider.enabled = false;
             isOpened = !isOpened;
@@ -83,12 +69,6 @@ namespace MyFps
 
             if (doorCollider != null) doorCollider.enabled = true;
         }
-
-        //public void OnLostFocus()
-        //{
-        //    if (extraCross != null) extraCross.SetActive(false);
-        //    if (actionUI != null) actionUI.SetActive(false);
-        //}
         #endregion
     }
 }

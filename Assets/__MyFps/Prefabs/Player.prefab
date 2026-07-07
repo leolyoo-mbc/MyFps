@@ -5673,6 +5673,7 @@ GameObject:
   - component: {fileID: 5513503108539220502}
   - component: {fileID: 9211995673455916663}
   - component: {fileID: 4943946360808701002}
+  - component: {fileID: 3975458257278207533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5739,6 +5740,9 @@ MonoBehaviour:
   cameraRoot: {fileID: 1202010651260825804}
   maxDistance: 100
   maxInteractableDistance: 2
+  actionUI: {fileID: 0}
+  actionText: {fileID: 0}
+  extraCross: {fileID: 0}
 --- !u!114 &2646704828312972978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5812,7 +5816,44 @@ MonoBehaviour:
   - {fileID: 8524315615199545236}
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7147729078212111417, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+        m_TargetAssemblyTypeName: MyFps.SceneFader, Assembly-CSharp
+        m_MethodName: FadeTo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameOver
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9211995673455916663}
+        m_TargetAssemblyTypeName: MyFps.PlayerInputReader, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameOver
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3975458257278207533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638897114116580763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061c1fc350f06184c8451fbe2aab05db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.PlayerAmmo
+  data: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
 --- !u!1 &5738820351187760011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6396,7 +6437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1877637303065138114
 Transform:
   m_ObjectHideFlags: 0

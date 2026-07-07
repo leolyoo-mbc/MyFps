@@ -5,8 +5,8 @@ namespace MyFps
     public class FloatingItem : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private float floatAmplitude = 0.5f;
-        [SerializeField] private float floatFrequency = 1f;
+        [SerializeField] private float floatAmplitude = 0.1f;
+        [SerializeField] private float floatFrequency = 3f;
 
         private Vector3 startPos;
         #endregion

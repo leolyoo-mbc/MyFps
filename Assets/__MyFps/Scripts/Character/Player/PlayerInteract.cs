@@ -38,12 +38,7 @@ namespace MyFps
             if (currentCollider != lastCollider)
             {
                 // (1) 예전에 포커스된 오브젝트가 있었다면 꺼줍니다.
-                if (lastInteractable != null)
-                {
-                    if (actionUI != null) actionUI.SetActive(false);
-                    if (extraCross != null) extraCross.SetActive(false);
-                }
-                lastInteractable = null; // 안전하게 비워두기
+                ClearInteractState();
                 // (2) 새로 시선이 닿은 물체가 있다면 인터페이스가 있는지 검사합니다.
                 if (currentCollider != null)
                 {
@@ -61,7 +56,18 @@ namespace MyFps
                 lastCollider = currentCollider;
             }
 
-            if (interactIntent) lastInteractable?.OnInteract(gameObject);
+            if (interactIntent)
+            {
+                lastInteractable?.OnInteract(gameObject);
+
+                // 예전에 포커스된 오브젝트 관련 UI를 즉시 꺼줍니다.
+                // (만약 상호작용으로 인해 물체가 파괴되어 다음 프레임에 currentCollider가 null이 되면
+                // null != null이 되어 UI 끄는 로직이 실행되지 않는 문제를 방지합니다.)
+                ClearInteractState();
+
+                // 강제로 다음 프레임에 오브젝트 상태를 다시 체크하고 UI를 갱신하도록 콜라이더를 초기화합니다.
+                lastCollider = null;
+            }
             interactIntent = false;
         }
 
@@ -85,6 +91,15 @@ namespace MyFps
         #endregion
 
         #region Custom Method
+        private void ClearInteractState()
+        {
+            if (lastInteractable != null)
+            {
+                if (actionUI != null) actionUI.SetActive(false);
+                if (extraCross != null) extraCross.SetActive(false);
+            }
+            lastInteractable = null;
+        }
         #endregion
     }
 }

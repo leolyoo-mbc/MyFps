@@ -1724,65 +1724,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 562235236}
     m_Modifications:
     - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241736057}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1110259991}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FadeTo
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MyFps.SceneFader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MyFps.PlayerInputReader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5638897114116580763, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1827,6 +1771,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8813041948560823446, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: actionUI
+      value: 
+      objectReference: {fileID: 1961506653}
+    - target: {fileID: 8813041948560823446, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: actionText
+      value: 
+      objectReference: {fileID: 581426043}
+    - target: {fileID: 8813041948560823446, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: extraCross
+      value: 
+      objectReference: {fileID: 1180228964}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14066,12 +14022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1301d637a53ca714bab0bf6dc6a2f56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolPickup
-  actionUI: {fileID: 1961506653}
-  actionText: {fileID: 581426043}
-  InteractText: PICK UP PISTOL
-  extraCross: {fileID: 1180228964}
   pistolInPlayerHand: {fileID: 305479054}
   guideArrow: {fileID: 1580780442}
+  ammoUI: {fileID: 1182596743}
 --- !u!1 &1552649074
 GameObject:
   m_ObjectHideFlags: 0
@@ -16692,6 +16645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450651808417349}
   - component: {fileID: 919132147867884800}
+  - component: {fileID: 919132147867884803}
   - component: {fileID: 919132147867884801}
   - component: {fileID: 919132147867884802}
   m_Layer: 0
@@ -16735,10 +16689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99be3ca7b43ac2f4a86492f629436c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.DoorCellOpen
-  actionUI: {fileID: 1961506653}
-  actionText: {fileID: 581426043}
   doorCollider: {fileID: 145030457}
-  extraCross: {fileID: 1180228964}
   InteractTextWhenClosed: OPEN THE DOOR
   InteractTextWhenOpened: CLOSE THE DOOR
 --- !u!82 &919132147867884802
@@ -16838,6 +16789,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &919132147867884803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147867884799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baca3501c20cf94419386a6804a66414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.InteractActivator
+  actionText: INTERACT
 --- !u!1 &923912531075248731
 GameObject:
   m_ObjectHideFlags: 0

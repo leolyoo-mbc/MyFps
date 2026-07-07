@@ -8,6 +8,8 @@ namespace MyFps
         [SerializeField] private GameObject unbrokenStateGameObject;
         [SerializeField] private GameObject brokenStateGameObject;
         private bool isBroken = false;
+
+        [SerializeField] private GameObject hiddenItem;
         #endregion
 
         #region Unity Event Method
@@ -16,6 +18,7 @@ namespace MyFps
             // 게임 시작 시 초기 상태 보장 (부서지기 전 모습 활성화, 부서진 모습 비활성화)
             if (unbrokenStateGameObject != null) unbrokenStateGameObject.SetActive(true);
             if (brokenStateGameObject != null) brokenStateGameObject.SetActive(false);
+            if (hiddenItem != null) hiddenItem.SetActive(false);
         }
         #endregion
 
@@ -38,7 +41,7 @@ namespace MyFps
             if (brokenStateGameObject != null)
                 brokenStateGameObject.SetActive(true);
 
-            // (선택) 부서질 때 파티클, 사운드 재생, 혹은 충돌체 비활성화 등 추가 가능
+            if (hiddenItem != null) hiddenItem.SetActive(true);
         }
         #endregion
     }
