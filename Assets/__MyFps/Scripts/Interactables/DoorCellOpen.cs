@@ -29,10 +29,10 @@ namespace MyFps
 
         private static readonly int IsOpenHash = Animator.StringToHash("IsOpen");
 
-
-
         [SerializeField] private string InteractTextWhenClosed = "OPEN THE DOOR";
         [SerializeField] private string InteractTextWhenOpened = "CLOSE THE DOOR";
+
+        string IInteractable.ActionText => isOpened ? InteractTextWhenOpened : InteractTextWhenClosed;
         #endregion
 
         #region Property
@@ -48,15 +48,15 @@ namespace MyFps
         #endregion
 
         #region Custom Method
-        public void OnFocus()
-        {
-            if (extraCross != null) extraCross.SetActive(true);
-            if (actionUI != null && actionText != null)
-            {
-                actionText.SetText(isOpened ? InteractTextWhenOpened : InteractTextWhenClosed);
-                actionUI.SetActive(true);
-            }
-        }
+        //public void OnFocus()
+        //{
+        //    if (extraCross != null) extraCross.SetActive(true);
+        //    if (actionUI != null && actionText != null)
+        //    {
+        //        actionText.SetText(isOpened ? InteractTextWhenOpened : InteractTextWhenClosed);
+        //        actionUI.SetActive(true);
+        //    }
+        //}
 
         public void OnInteract(GameObject interactor)
         {
@@ -84,11 +84,11 @@ namespace MyFps
             if (doorCollider != null) doorCollider.enabled = true;
         }
 
-        public void OnLostFocus()
-        {
-            if (extraCross != null) extraCross.SetActive(false);
-            if (actionUI != null) actionUI.SetActive(false);
-        }
+        //public void OnLostFocus()
+        //{
+        //    if (extraCross != null) extraCross.SetActive(false);
+        //    if (actionUI != null) actionUI.SetActive(false);
+        //}
         #endregion
     }
 }

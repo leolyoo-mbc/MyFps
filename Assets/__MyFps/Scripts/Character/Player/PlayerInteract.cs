@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace MyFps
@@ -14,6 +15,10 @@ namespace MyFps
 
         private Collider lastCollider;
         private IInteractable lastInteractable;
+
+        [SerializeField] private GameObject actionUI;
+        [SerializeField] private TMP_Text actionText;
+        [SerializeField] private GameObject extraCross;
         #endregion
 
         #region Unity Event Method
@@ -33,7 +38,11 @@ namespace MyFps
             if (currentCollider != lastCollider)
             {
                 // (1) 예전에 포커스된 오브젝트가 있었다면 꺼줍니다.
-                lastInteractable?.OnLostFocus();
+                if (lastInteractable != null)
+                {
+                    if (actionUI != null) actionUI.SetActive(false);
+                    if (extraCross != null) extraCross.SetActive(false);
+                }
                 lastInteractable = null; // 안전하게 비워두기
                 // (2) 새로 시선이 닿은 물체가 있다면 인터페이스가 있는지 검사합니다.
                 if (currentCollider != null)
@@ -42,8 +51,10 @@ namespace MyFps
                     IInteractable interactable = currentCollider.GetComponentInParent<IInteractable>();
                     if (interactable != null)
                     {
-                        interactable.OnFocus();
                         lastInteractable = interactable;
+                        if (actionUI != null) actionUI.SetActive(true);
+                        if (actionText != null) actionText.SetText(lastInteractable.ActionText);
+                        if (extraCross != null) extraCross.SetActive(true);
                     }
                 }
                 // (3) 다음 프레임 비교를 위해 콜라이더 갱신
