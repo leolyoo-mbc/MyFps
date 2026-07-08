@@ -10,7 +10,7 @@ namespace MyFps
         {
             if (stats != null)
             {
-                stats.HasKey = true;
+                stats.Key = true;
                 Debug.Log("Key acquired!");
             }
         }

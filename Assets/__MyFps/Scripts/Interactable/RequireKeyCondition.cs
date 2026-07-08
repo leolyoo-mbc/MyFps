@@ -9,7 +9,7 @@ namespace MyFps
         public bool CanInteract(GameObject interactor)
         {
             if (stats == null) return false;
-            if (!stats.HasKey)
+            if (!stats.Key)
             {
                 Debug.Log("You need the HeartKey!");
                 return false;

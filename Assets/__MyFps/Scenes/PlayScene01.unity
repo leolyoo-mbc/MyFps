@@ -1783,6 +1783,10 @@ PrefabInstance:
       propertyPath: extraCross
       value: 
       objectReference: {fileID: 1180228964}
+    - target: {fileID: 8891853613218834303, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10338,6 +10342,18 @@ MonoBehaviour:
     stepEvent:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
+          m_TargetAssemblyTypeName: MyFps.PlayerStatsData, Assembly-CSharp
+          m_MethodName: ResetToDefault
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: ...Where am I?
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1241736057}
           m_TargetAssemblyTypeName: MyFps.SceneFader, Assembly-CSharp
           m_MethodName: set_DelayTime

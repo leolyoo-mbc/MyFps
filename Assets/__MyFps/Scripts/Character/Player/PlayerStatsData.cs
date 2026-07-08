@@ -26,19 +26,19 @@ namespace MyFps
         }
 
         [Tooltip("열쇠 보유 여부")]
-        [SerializeField] private bool hasKey = false;
+        [SerializeField] private bool key = false;
 
         public event Action<bool> OnKeyStatusChanged;
 
-        public bool HasKey
+        public bool Key
         {
-            get => hasKey;
+            get => key;
             set
             {
-                if (hasKey != value)
+                if (key != value)
                 {
-                    hasKey = value;
-                    OnKeyStatusChanged?.Invoke(hasKey);
+                    key = value;
+                    OnKeyStatusChanged?.Invoke(key);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace MyFps
         public void ResetToDefault()
         {
             AmmoCount = 0; // 게임 시작 시 초기 지급량
-            HasKey = false;
+            Key = false;
         }
     }
 }

@@ -4,9 +4,6 @@ using static InputSystem_Actions;
 
 namespace MyFps
 {
-    [RequireComponent(typeof(CharacterMove))]
-    [RequireComponent(typeof(PlayerLook))]
-    [RequireComponent(typeof(PlayerInteract))]
     public class PlayerInputReader : MonoBehaviour, IPlayerActions
     {
         #region Variables
@@ -21,9 +18,10 @@ namespace MyFps
         void Awake()
         {
             inputActions = new InputSystem_Actions();
-            playerMove = GetComponent<CharacterMove>();
-            playerLook = GetComponent<PlayerLook>();
-            playerInteract = GetComponent<PlayerInteract>();
+
+            if (TryGetComponent<CharacterMove>(out var playerMove)) this.playerMove = playerMove;
+            if (TryGetComponent<PlayerLook>(out var playerLook)) this.playerLook = playerLook;
+            if (TryGetComponent<PlayerInteract>(out var playerInteract)) this.playerInteract = playerInteract;
         }
 
         void OnEnable()
@@ -44,7 +42,7 @@ namespace MyFps
         #region Input Callbacks
         public void OnAttack(InputAction.CallbackContext context)
         {
-            playerAttack.attackIntent = context.ReadValueAsButton();
+            if (playerAttack != null) playerAttack.attackIntent = context.ReadValueAsButton();
         }
 
         public void OnCrouch(InputAction.CallbackContext context)
@@ -54,22 +52,22 @@ namespace MyFps
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            playerInteract.interactIntent = context.ReadValueAsButton();
+            if (playerInteract != null) playerInteract.interactIntent = context.ReadValueAsButton();
         }
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            playerMove.jumpIntent = context.ReadValueAsButton();
+            if (playerMove != null) playerMove.jumpIntent = context.ReadValueAsButton();
         }
 
         public void OnLook(InputAction.CallbackContext context)
         {
-            playerLook.lookIntent = context.ReadValue<Vector2>();
+            if (playerLook != null) playerLook.lookIntent = context.ReadValue<Vector2>();
         }
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            playerMove.horizontalMoveIntent = context.ReadValue<Vector2>();
+            if (playerMove != null) playerMove.horizontalMoveIntent = context.ReadValue<Vector2>();
         }
 
         public void OnNext(InputAction.CallbackContext context)
@@ -84,7 +82,7 @@ namespace MyFps
 
         public void OnSprint(InputAction.CallbackContext context)
         {
-            playerMove.sprintIntent = context.ReadValueAsButton();
+            if (playerMove != null) playerMove.sprintIntent = context.ReadValueAsButton();
         }
         #endregion
     }
