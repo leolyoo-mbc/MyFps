@@ -8700,17 +8700,17 @@ MonoBehaviour:
     stepEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 901024728}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MyFps.SlidingDoorController, Assembly-CSharp
-          m_MethodName: set_TargetOpenAmount
-          m_Mode: 4
+          m_MethodName: set_Open
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 1
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 1274377195}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -9197,18 +9197,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 562235236}
     m_Modifications:
     - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24
       objectReference: {fileID: 0}
@@ -9248,10 +9236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
       propertyPath: m_Name
       value: DoubleSlidingDoor (2)
@@ -9259,13 +9243,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 901024728}
-    - targetCorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 901024730}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
 --- !u!1 &797930981
 GameObject:
@@ -9871,127 +9849,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &901024726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-  m_PrefabInstance: {fileID: 747845507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &901024727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
   m_PrefabInstance: {fileID: 747845507}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &901024728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901024726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7b4847602e3e34db1049a69eef083b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SlidingDoorOpen
-  openSpeed: 2
-  currentOpenAmount: 0
---- !u!82 &901024730
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901024726}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &911130402
 GameObject:
   m_ObjectHideFlags: 0
@@ -13343,6 +13205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoorOpen
   openSpeed: 2
   currentOpenAmount: 0
+  targetOpenAmount: 0
 --- !u!82 &1385559693
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14300,15 +14163,15 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1134329820}
           m_TargetAssemblyTypeName: MyFps.SlidingDoorController, Assembly-CSharp
-          m_MethodName: set_TargetOpenAmount
-          m_Mode: 4
+          m_MethodName: set_Open
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 1
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 2323920777553272735}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -15086,18 +14949,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 562235236}
     m_Modifications:
     - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34
       objectReference: {fileID: 0}
@@ -15137,10 +14988,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
       propertyPath: m_Name
       value: DoubleSlidingDoor (3)
@@ -15148,135 +14995,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1803741203}
-    - targetCorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1803741202}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
 --- !u!4 &1803741200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 309067232409615001, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
   m_PrefabInstance: {fileID: 1803741199}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1803741201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8419660702742339066, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
-  m_PrefabInstance: {fileID: 1803741199}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1803741202
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803741201}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1803741203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803741201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7b4847602e3e34db1049a69eef083b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SlidingDoorOpen
-  openSpeed: 2
-  currentOpenAmount: 0
 --- !u!1 &1816484738
 GameObject:
   m_ObjectHideFlags: 0
@@ -17559,15 +17284,15 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1385559691}
         m_TargetAssemblyTypeName: MyFps.SlidingDoorController, Assembly-CSharp
-        m_MethodName: set_TargetOpenAmount
-        m_Mode: 4
+        m_MethodName: set_Open
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 1
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!143 &3101829018648184106
 CharacterController:

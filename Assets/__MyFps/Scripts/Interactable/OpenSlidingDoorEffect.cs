@@ -10,7 +10,7 @@ namespace MyFps
         {
             if (doorController != null)
             {
-                doorController.TargetOpenAmount = doorController.TargetOpenAmount > 0f ? 0f : 1f;
+                doorController.Open = !doorController.Open;
             }
         }
 
@@ -18,7 +18,7 @@ namespace MyFps
         {
             if (doorController != null)
             {
-                return doorController.TargetOpenAmount > 0f ? "CLOSE THE DOOR" : "OPEN DOOR";
+                return doorController.Open ? "CLOSE THE DOOR" : "OPEN DOOR";
             }
             return "";
         }

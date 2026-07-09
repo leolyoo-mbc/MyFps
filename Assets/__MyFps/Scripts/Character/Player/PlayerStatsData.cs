@@ -43,10 +43,48 @@ namespace MyFps
             }
         }
 
+        [Tooltip("왼쪽 퍼즐 눈(Left Eye) 보유 여부")]
+        [SerializeField] private bool puzzleLeftEye = false;
+
+        public event Action<bool> OnPuzzleLeftEyeStatusChanged;
+
+        public bool PuzzleLeftEye
+        {
+            get => puzzleLeftEye;
+            set
+            {
+                if (puzzleLeftEye != value)
+                {
+                    puzzleLeftEye = value;
+                    OnPuzzleLeftEyeStatusChanged?.Invoke(puzzleLeftEye);
+                }
+            }
+        }
+
+        [Tooltip("오른쪽 퍼즐 눈(Right Eye) 보유 여부")]
+        [SerializeField] private bool puzzleRightEye = false;
+
+        public event Action<bool> OnPuzzleRightEyeStatusChanged;
+
+        public bool PuzzleRightEye
+        {
+            get => puzzleRightEye;
+            set
+            {
+                if (puzzleRightEye != value)
+                {
+                    puzzleRightEye = value;
+                    OnPuzzleRightEyeStatusChanged?.Invoke(puzzleRightEye);
+                }
+            }
+        }
+
         public void ResetToDefault()
         {
             AmmoCount = 0; // 게임 시작 시 초기 지급량
             Key = false;
+            PuzzleLeftEye = false;
+            PuzzleRightEye = false;
         }
     }
 }
