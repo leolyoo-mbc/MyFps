@@ -1723,6 +1723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 562235236}
     m_Modifications:
+    - target: {fileID: 681262108235768791, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: weight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8700,7 +8704,7 @@ MonoBehaviour:
     stepEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 747845508}
           m_TargetAssemblyTypeName: MyFps.SlidingDoorController, Assembly-CSharp
           m_MethodName: set_Open
           m_Mode: 6
@@ -9245,6 +9249,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
+--- !u!114 &747845508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8017565891208064921, guid: d39c5a90ba8c1fb4bb8067c771ab14c5, type: 3}
+  m_PrefabInstance: {fileID: 747845507}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7b4847602e3e34db1049a69eef083b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlidingDoorOpen
 --- !u!1 &797930981
 GameObject:
   m_ObjectHideFlags: 0

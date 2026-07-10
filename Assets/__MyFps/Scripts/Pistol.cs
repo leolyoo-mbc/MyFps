@@ -23,8 +23,6 @@ namespace MyFps
         [SerializeField] private float maxRange = 100f;
         [SerializeField] private LayerMask hitLayer = ~0; // 기본적으로 모든 레이어와 충돌
 
-        [SerializeField] private PlayerStatsData stats;
-
         private static readonly int FireTriggerHash = Animator.StringToHash("FireTrigger");
         #endregion
 
@@ -38,9 +36,10 @@ namespace MyFps
         {
             if (attackIntent)
             {
-                if (stats != null && stats.AmmoCount > 0)
+                var inventory = GetComponentInParent<IInventory>();
+                if (inventory != null && inventory.HasItem(ItemType.Ammo))
                 {
-                    stats.AmmoCount--;
+                    inventory.ModifyItem(ItemType.Ammo, -1);
                     animator.SetTrigger(FireTriggerHash);
                 }
                 else Debug.Log("You need to reload");

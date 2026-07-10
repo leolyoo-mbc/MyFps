@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21536ba8ab07eea47b9cce4e91546414, type: 3}
   m_Name: PlayerStatsData
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.PlayerStatsData
-  ammoCount: 0
-  key: 0
-  puzzleLeftEye: 0
-  puzzleRightEye: 0
+  items: 08000000010000000000000000000000

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5541109706970824167}
   - component: {fileID: 7154848810143834048}
   - component: {fileID: 6158182442243523777}
-  - component: {fileID: 1724039218970654627}
   - component: {fileID: 6199925393036559943}
+  - component: {fileID: 5262863016063993582}
   m_Layer: 0
   m_Name: PuzzleRightEye_Piece
   m_TagString: Untagged
@@ -129,21 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.InteractActivator
   actionText: INTERACT
---- !u!114 &1724039218970654627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573098801278246899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b761a9cf73eb1a644b08baa8776977e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyPuzzleEffect
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
-  pieceType: 1
-  isAdding: 1
 --- !u!114 &6199925393036559943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +142,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.DisableSelfEffect
   disableMethod: 1
+--- !u!114 &5262863016063993582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573098801278246899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad941c1f6da90a45926c2d8d0ccd4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyItemEffect
+  itemType: 3
+  amount: 1
 --- !u!1 &2454648820686823656
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7795434790406419633}
   - component: {fileID: 488152913210391374}
   - component: {fileID: 6942990933885375806}
-  - component: {fileID: 3472157085576591737}
+  - component: {fileID: 8074070698837633810}
   m_Layer: 0
   m_Name: Switch1
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.OpenSlidingDoorEffect
   doorController: {fileID: 1802730591781200730}
---- !u!114 &3472157085576591737
+--- !u!114 &8074070698837633810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +93,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 572481229844333428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93128a354ebc437499feb1a41755de69, type: 3}
+  m_Script: {fileID: 11500000, guid: d6f3e575d9595b2448c7fd14614ceff4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequireKeyCondition
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequireItemCondition
+  requiredItem: 1
 --- !u!1 &3019592016855222743
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 1141145634424549245}
   - component: {fileID: 122109258014320908}
   - component: {fileID: 2133894761953472051}
-  - component: {fileID: 7349477507411272160}
+  - component: {fileID: 4079548804734737952}
   m_Layer: 0
   m_Name: Switch2
   m_TagString: Untagged
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.OpenSlidingDoorEffect
   doorController: {fileID: 1802730591781200730}
---- !u!114 &7349477507411272160
+--- !u!114 &4079548804734737952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,10 +584,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7668913170991594045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93128a354ebc437499feb1a41755de69, type: 3}
+  m_Script: {fileID: 11500000, guid: d6f3e575d9595b2448c7fd14614ceff4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequireKeyCondition
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequireItemCondition
+  requiredItem: 1
 --- !u!1001 &8520960436460817603
 PrefabInstance:
   m_ObjectHideFlags: 0

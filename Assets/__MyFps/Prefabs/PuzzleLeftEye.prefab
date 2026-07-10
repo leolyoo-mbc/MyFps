@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 979195272842168608}
   - component: {fileID: 719195845144295841}
   - component: {fileID: 9121196200033231759}
-  - component: {fileID: 6101648710322625054}
-  - component: {fileID: 8974009716218172299}
   - component: {fileID: 8416495803172300798}
+  - component: {fileID: 7713743345255813376}
+  - component: {fileID: 3439234390190808942}
   m_Layer: 0
   m_Name: PuzzleLeftEye
   m_TagString: Untagged
@@ -130,35 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.InteractActivator
   actionText: INTERACT
---- !u!114 &6101648710322625054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2718913816023069005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42966c5a773ce8f44af954ff0215ed55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequirePuzzleCondition
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
-  requiredPiece: 0
---- !u!114 &8974009716218172299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2718913816023069005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b761a9cf73eb1a644b08baa8776977e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyPuzzleEffect
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
-  pieceType: 0
-  isAdding: 0
 --- !u!114 &8416495803172300798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +144,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.EnableTargetEffect
   targetObject: {fileID: 3641545078136284236}
   disableOnStart: 1
+--- !u!114 &7713743345255813376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718913816023069005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3e575d9595b2448c7fd14614ceff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.RequireItemCondition
+  requiredItem: 2
+--- !u!114 &3439234390190808942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718913816023069005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad941c1f6da90a45926c2d8d0ccd4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyItemEffect
+  itemType: 2
+  amount: -1
 --- !u!1 &3641545078136284236
 GameObject:
   m_ObjectHideFlags: 0

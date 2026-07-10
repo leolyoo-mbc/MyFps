@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 2131125225372317845}
   - component: {fileID: 2633855713421921011}
   - component: {fileID: 831388988774550101}
-  - component: {fileID: 3204865404902808949}
+  - component: {fileID: 7498867224238258647}
   m_Layer: 0
   m_Name: Key_Trigger
   m_TagString: Untagged
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.DisableSelfEffect
   disableMethod: 1
---- !u!114 &3204865404902808949
+--- !u!114 &7498867224238258647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,7 +199,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5463364928102047691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3e29fbe0a56c04db8cefb3f478de56, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad941c1f6da90a45926c2d8d0ccd4d3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.AddKeyEffect
-  stats: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyItemEffect
+  itemType: 1
+  amount: 1

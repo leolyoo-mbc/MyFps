@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8503015162762328663}
   - component: {fileID: 8065595433644710702}
   - component: {fileID: 3796188896828257968}
-  - component: {fileID: 6831769696112172043}
   - component: {fileID: 7370860420398447472}
+  - component: {fileID: 6365949101262724703}
   m_Layer: 0
   m_Name: AmmoBox_Trigger
   m_TagString: Untagged
@@ -93,19 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatingItem
   floatAmplitude: 0.1
   floatFrequency: 3
---- !u!114 &6831769696112172043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494671199058241682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bced17c4c919084d830f0ab6896dafe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.AddAmmoEffect
-  amount: 7
 --- !u!114 &7370860420398447472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.DisableSelfEffect
   disableMethod: 1
+--- !u!114 &6365949101262724703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494671199058241682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad941c1f6da90a45926c2d8d0ccd4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyItemEffect
+  itemType: 0
+  amount: 7
 --- !u!1 &1800634458197146387
 GameObject:
   m_ObjectHideFlags: 0

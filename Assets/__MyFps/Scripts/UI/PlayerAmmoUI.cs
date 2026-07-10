@@ -20,9 +20,9 @@ namespace MyFps
             if (statData != null)
             {
                 // 이벤트 구독
-                statData.OnAmmoChanged += UpdateUI;
+                statData.OnItemChanged += OnItemChanged;
                 // 켜질 때 초기 1회 업데이트
-                UpdateUI(statData.AmmoCount);
+                UpdateUI(statData[ItemType.Ammo]);
             }
         }
 
@@ -31,7 +31,15 @@ namespace MyFps
             if (statData != null)
             {
                 // 이벤트 구독 해제 (메모리 누수 방지)
-                statData.OnAmmoChanged -= UpdateUI;
+                statData.OnItemChanged -= OnItemChanged;
+            }
+        }
+
+        private void OnItemChanged(ItemType type, int amount)
+        {
+            if (type == ItemType.Ammo)
+            {
+                UpdateUI(amount);
             }
         }
         #endregion

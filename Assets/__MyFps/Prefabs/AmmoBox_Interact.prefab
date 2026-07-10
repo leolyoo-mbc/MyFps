@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 1628671081216393991}
   - component: {fileID: 3521590839091860525}
   - component: {fileID: -575222203476318907}
-  - component: {fileID: 139227071946645345}
+  - component: {fileID: 227326668703227613}
   m_Layer: 0
   m_Name: AmmoBox_Interact
   m_TagString: Untagged
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.DisableSelfEffect
   disableMethod: 1
---- !u!114 &139227071946645345
+--- !u!114 &227326668703227613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,9 +280,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2955574227344128771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bced17c4c919084d830f0ab6896dafe, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad941c1f6da90a45926c2d8d0ccd4d3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyFps.AddAmmoEffect
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.ModifyItemEffect
+  itemType: 0
   amount: 7
 --- !u!1 &3369561332984201327
 GameObject:
