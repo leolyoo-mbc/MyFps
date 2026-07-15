@@ -26,7 +26,7 @@ namespace MyFps
         #endregion
 
         #region IDamageable Implementation
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, UnityEngine.Vector3 hitDirection = default)
         {
             // 이미 부서진 상태라면 더 이상 처리하지 않음
             if (isBroken) return;

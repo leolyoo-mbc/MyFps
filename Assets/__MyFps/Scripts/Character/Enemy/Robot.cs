@@ -112,7 +112,7 @@ namespace MyFps
             attackCooldown = attackInterval;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, UnityEngine.Vector3 hitDirection = default)
         {
             if (isDead) return;
 

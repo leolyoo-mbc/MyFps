@@ -24,22 +24,22 @@ namespace MyFps
         [SerializeField] private LayerMask hitLayer = ~0; // 기본적으로 모든 레이어와 충돌
 
         private static readonly int FireTriggerHash = Animator.StringToHash("FireTrigger");
+        private IInventory inventory;
         #endregion
 
         #region Unity Event Method
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            inventory = GetComponentInParent<IInventory>();
         }
 
         private void Update()
         {
             if (attackIntent)
             {
-                var inventory = GetComponentInParent<IInventory>();
                 if (inventory != null && inventory.HasItem(ItemType.Ammo))
                 {
-                    inventory.ModifyItem(ItemType.Ammo, -1);
                     animator.SetTrigger(FireTriggerHash);
                 }
                 else Debug.Log("You need to reload");
@@ -52,6 +52,10 @@ namespace MyFps
         #region Custom Method
         public void OnFire()
         {
+            if (inventory == null || !inventory.HasItem(ItemType.Ammo)) return;
+
+            inventory.ModifyItem(ItemType.Ammo, -1);
+
             if (fireSound != null) fireSound.Play();
             if (muzzleFlash != null) muzzleFlash.Play();
 
@@ -70,7 +74,7 @@ namespace MyFps
                     if (hitCollider != null)
                     {
                         IDamageable target = hitCollider.GetComponentInParent<IDamageable>();
-                        target?.TakeDamage(damage);
+                        target?.TakeDamage(damage, cameraRoot.forward);
                     }
                 }
             }

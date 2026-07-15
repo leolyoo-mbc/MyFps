@@ -31,7 +31,7 @@ namespace MyFps
         #endregion
 
         #region Custom Method
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, UnityEngine.Vector3 hitDirection = default)
         {
             if (isDead) return;
 
@@ -40,6 +40,7 @@ namespace MyFps
             // 데미지 효과 실행
             PlayRandomHurtSound();
             TriggerDamageFlash();
+            CinemachineShake.Instance.ShakeCamera();
 
             if (currentHealth <= 0)
             {

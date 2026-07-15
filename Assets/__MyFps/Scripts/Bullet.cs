@@ -90,7 +90,7 @@ namespace MyFps
             }
 
             IDamageable target = hitCollider.GetComponentInParent<IDamageable>();
-            target?.TakeDamage(damage);
+            target?.TakeDamage(damage, transform.forward);
 
             Destroy(gameObject);
         }

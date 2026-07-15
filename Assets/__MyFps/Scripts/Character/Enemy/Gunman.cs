@@ -10,7 +10,7 @@ namespace MyFps
     {
         public enum State
         {
-            Idle, Walk, Chase, Attack, Dead
+            Idle, Walk, Chase, Attack, Search, Dead
         }
 
         #region Variables
@@ -25,7 +25,8 @@ namespace MyFps
         private State lastState;
 
         [Header("Target & Health")]
-        [SerializeField] private Transform targetPlayer; // 에디터에서 플레이어 할당
+        // 이제 에디터에서 플레이어를 할당하지 않아도 됨 (FOV 센서로 자동 감지)
+        private Transform targetPlayer;
         [SerializeField] private float maxHealth = 20f;
         private float currentHealth = 0f;
 
@@ -33,6 +34,13 @@ namespace MyFps
         private static readonly int MoveSpeedHash = Animator.StringToHash("MoveSpeed");
         private static readonly int FireTriggerHash = Animator.StringToHash("FireTrigger");
         private static readonly int IsDeadHash = Animator.StringToHash("IsDead");
+
+        [Header("Field of View (시야 센서)")]
+        [SerializeField] private Transform eyeTransform;  // 눈(머리) 위치 뼈대
+        [SerializeField] private float detectRange = 15f; // 시야 거리
+        [SerializeField] private float viewAngle = 120f;  // 시야각
+        [SerializeField] private LayerMask targetMask;    // 플레이어 레이어 (인스펙터에서 7번 Player 할당 필요!)
+        [SerializeField] private LayerMask obstacleMask;  // 벽/장애물 레이어 (보통 Default나 Obstacle)
 
         [Header("Idle & Patrol")]
         [SerializeField] private float idleTimer = 2f;
@@ -44,11 +52,17 @@ namespace MyFps
         private Vector3 startPosition = Vector3.zero;
 
         [Header("Chase & Attack")]
-        [SerializeField] private float detectRange = 15f; // 적 발견 거리
         [SerializeField] private float attackRange = 8f;  // 사격 가능 거리
         [SerializeField] private float attackInterval = 2f;
         private float attackCountdown = 0f;
 
+        [Header("Search (수색)")]
+        [SerializeField] private float searchDuration = 5f; // 수색 대기 시간
+        private float searchCountdown = 0f;
+        private Vector3 lastKnownPosition; // 마지막으로 본 위치
+        private Vector3 searchDirection;   // 등 뒤에서 맞았을 때 돌아볼 방향
+
+        [Header("Damage")]
         [SerializeField] private float attackDamage = 5f;
         #endregion
 
@@ -65,13 +79,6 @@ namespace MyFps
             startPosition = transform.position;
             wayPointIndex = 1;
 
-            // 타겟이 비어있다면 태그로 찾기 (안전 장치)
-            if (targetPlayer == null)
-            {
-                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-                if (playerObj != null) targetPlayer = playerObj.transform;
-            }
-
             isPatrol = wayPoints != null && wayPoints.Length >= 2;
 
             ChangeState(State.Idle);
@@ -81,6 +88,22 @@ namespace MyFps
         {
             // switch문 없이 현재 상태에 연결된 함수만 호출
             stateUpdate?.Invoke();
+        }
+
+        // 씬 뷰에서 시야를 확인하기 위한 기즈모 그리기
+        private void OnDrawGizmosSelected()
+        {
+            Vector3 eyePos = eyeTransform != null ? eyeTransform.position : transform.position;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(eyePos, detectRange);
+
+            Vector3 leftBoundary = Quaternion.Euler(0, -viewAngle / 2, 0) * transform.forward;
+            Vector3 rightBoundary = Quaternion.Euler(0, viewAngle / 2, 0) * transform.forward;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(eyePos, eyePos + leftBoundary * detectRange);
+            Gizmos.DrawLine(eyePos, eyePos + rightBoundary * detectRange);
         }
         #endregion
 
@@ -120,6 +143,23 @@ namespace MyFps
                     stateUpdate = UpdateAttack;
                     break;
 
+                case State.Search:
+                    anim.SetLayerWeight(1, 1f); // 전투 상태: 총을 든 채로 수색
+                    
+                    if (searchDirection != Vector3.zero)
+                    {
+                        agent.isStopped = true; // 방향만 돌릴 때는 이동 정지
+                    }
+                    else
+                    {
+                        agent.isStopped = false;
+                        agent.SetDestination(lastKnownPosition); // 마지막 위치로 이동
+                    }
+                    
+                    searchCountdown = searchDuration;
+                    stateUpdate = UpdateSearch;
+                    break;
+
                 case State.Dead:
                     anim.SetBool(IsDeadHash, true);
                     anim.SetLayerWeight(1, 0f); // 죽을 때 조준 덮어쓰기 해제
@@ -130,12 +170,46 @@ namespace MyFps
             }
         }
 
+        // 시야 판정 (FOV + Raycast)
+        private bool CanSeePlayer()
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, detectRange, targetMask);
+            if (hits.Length > 0)
+            {
+                Transform target = hits[0].transform;
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+
+                // 내 정면 기준 시야각 안에 있는지 확인
+                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2f)
+                {
+                    // 에디터에서 할당한 눈 위치가 있으면 사용, 없으면 기본 transform.position 사용
+                    Vector3 eyePosition = eyeTransform != null ? eyeTransform.position : transform.position;
+
+                    // 플레이어와 벽 레이어를 합친 마스크로 '최대 시야 거리(detectRange)'만큼 레이를 쏩니다.
+                    int combinedMask = targetMask | obstacleMask;
+
+                    if (Physics.Raycast(eyePosition, dirToTarget, out RaycastHit hit, detectRange, combinedMask))
+                    {
+                        // 레이에 가장 먼저 맞은 물체의 레이어가 '플레이어 레이어'라면 벽에 가려지지 않은 것입니다!
+                        if (((1 << hit.collider.gameObject.layer) & targetMask) != 0)
+                        {
+                            targetPlayer = target;
+                            lastKnownPosition = target.position; // 보일 때마다 마지막 위치 갱신
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
         private void UpdateIdle()
         {
             anim.SetFloat(MoveSpeedHash, 0f);
 
-            // 감지 범위 내에 플레이어가 들어오면 추적 시작
-            if (targetPlayer != null && Vector3.Distance(transform.position, targetPlayer.position) <= detectRange)
+            // 시야에 플레이어가 들어오면 추적 시작
+            if (CanSeePlayer())
             {
                 ChangeState(State.Chase);
                 return;
@@ -144,9 +218,7 @@ namespace MyFps
             // 순찰 대기 로직
             if (isPatrol)
             {
-                // 삼항 연산자를 활용하여 0 아래로 내려가지 않도록 감소
                 idleCountdown = idleCountdown > 0f ? idleCountdown - Time.deltaTime : 0f;
-
                 if (idleCountdown <= 0f)
                 {
                     ChangeState(State.Walk);
@@ -158,8 +230,8 @@ namespace MyFps
         {
             anim.SetFloat(MoveSpeedHash, agent.velocity.magnitude);
 
-            // 순찰 중에도 감지 범위 내에 플레이어가 들어오면 추적 시작
-            if (targetPlayer != null && Vector3.Distance(transform.position, targetPlayer.position) <= detectRange)
+            // 시야에 플레이어가 들어오면 추적 시작
+            if (CanSeePlayer())
             {
                 ChangeState(State.Chase);
                 return;
@@ -181,19 +253,17 @@ namespace MyFps
         {
             anim.SetFloat(MoveSpeedHash, agent.velocity.magnitude);
 
-            if (targetPlayer == null) return;
-
-            float distance = Vector3.Distance(transform.position, targetPlayer.position);
-
-            // 거리가 너무 멀어지면 추적 포기 (여유를 두기 위해 감지 거리의 1.5배로 설정)
-            if (distance > detectRange * 1.5f)
+            // 계속 눈에 보이는지 체크 (안 보이면 수색 상태로 전환)
+            if (!CanSeePlayer())
             {
-                ChangeState(State.Idle);
+                ChangeState(State.Search);
                 return;
             }
 
+            float sqrDistance = (transform.position - targetPlayer.position).sqrMagnitude;
+
             // 공격 사거리 내에 들어오면 공격 상태로
-            if (distance <= attackRange)
+            if (sqrDistance <= attackRange * attackRange)
             {
                 ChangeState(State.Attack);
                 return;
@@ -207,12 +277,17 @@ namespace MyFps
         {
             anim.SetFloat(MoveSpeedHash, 0f);
 
-            if (targetPlayer == null) return;
+            // 시야에서 벗어나거나 벽에 숨으면 수색 상태로
+            if (!CanSeePlayer())
+            {
+                ChangeState(State.Search);
+                return;
+            }
 
-            float distance = Vector3.Distance(transform.position, targetPlayer.position);
+            float sqrDistance = (transform.position - targetPlayer.position).sqrMagnitude;
 
             // 사거리 밖으로 도망가면 다시 추적
-            if (distance > attackRange)
+            if (sqrDistance > attackRange * attackRange)
             {
                 ChangeState(State.Chase);
                 return;
@@ -235,19 +310,78 @@ namespace MyFps
                 attackCountdown = attackInterval;
             }
         }
+
+        private void UpdateSearch()
+        {
+            anim.SetFloat(MoveSpeedHash, agent.velocity.magnitude);
+
+            // 수색 중에도 언제든 다시 시야에 들어오면 즉시 추적 시작
+            if (CanSeePlayer())
+            {
+                searchDirection = Vector3.zero; // 시야 확보 시 초기화
+                ChangeState(State.Chase);
+                return;
+            }
+
+            // 방향 탐색 모드 (피격 당해서 방향만 알 때)
+            if (searchDirection != Vector3.zero)
+            {
+                anim.SetFloat(MoveSpeedHash, 0f); // 제자리에서
+                
+                // 맞은 반대 방향으로 몸을 돌립니다.
+                if (searchDirection != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(searchDirection), Time.deltaTime * 5f);
+                }
+                
+                searchCountdown = searchCountdown > 0f ? searchCountdown - Time.deltaTime : 0f;
+                if (searchCountdown <= 0f)
+                {
+                    searchDirection = Vector3.zero;
+                    targetPlayer = null;
+                    ChangeState(State.Walk);
+                }
+            }
+            // 위치 탐색 모드 (플레이어가 도망가서 마지막 위치로 갈 때)
+            else
+            {
+                if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                {
+                    anim.SetFloat(MoveSpeedHash, 0f); // 애니메이션 멈춤
+                    
+                    searchCountdown = searchCountdown > 0f ? searchCountdown - Time.deltaTime : 0f;
+                    if (searchCountdown <= 0f)
+                    {
+                        // 시간이 다 되도록 못 찾으면 타겟을 잊고 순찰로 돌아감
+                        targetPlayer = null;
+                        ChangeState(State.Walk); // 바로 걷게 하려면 Walk, 대기하게 하려면 Idle
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Interface Methods
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, UnityEngine.Vector3 hitDirection = default)
         {
             if (currentState == State.Dead) return;
 
             currentHealth -= damage;
 
-            // 뒤에서 맞았거나 평화 상태일 때 맞으면 강제로 추적(Chase) 모드로 전환
+            // 평화 상태(Idle/Walk)에서 공격받았다면 (방향 감지)
             if (currentState == State.Idle || currentState == State.Walk)
             {
-                ChangeState(State.Chase);
+                if (hitDirection != default)
+                {
+                    // 총알이 날아온 반대 방향을 저장
+                    searchDirection = -hitDirection.normalized;
+                    searchDirection.y = 0; // 수평 고정
+                    
+                    if (searchDirection != Vector3.zero)
+                    {
+                        ChangeState(State.Search);
+                    }
+                }
             }
 
             if (currentHealth <= 0)
@@ -261,11 +395,28 @@ namespace MyFps
         {
             if (targetPlayer == null || currentState == State.Dead) return;
 
-            // 이곳에서 실제 총알 발사 혹은 플레이어 데미지 처리 로직을 넣으시면 됩니다.
-            // if (Vector3.Distance(transform.position, targetPlayer.position) <= attackRange + 2f)
-            // {
-            //     targetPlayer.GetComponent<IDamageable>()?.TakeDamage(attackDamage);
-            // }
+            // 총알이 날아가는 시작점
+            Vector3 firePosition = eyeTransform != null ? eyeTransform.position : transform.position;
+            
+            // 타겟의 콜라이더(충돌체)의 정확한 중심점(bounds.center)을 가져와서 조준합니다.
+            // 억지로 +1.0f를 더할 필요 없이 모델의 크기나 앉은 자세 등에 맞춰 자동으로 중앙을 노립니다.
+            Collider targetCollider = targetPlayer.GetComponent<Collider>();
+            Vector3 targetCenter = targetCollider != null ? targetCollider.bounds.center : targetPlayer.position;
+            Vector3 dirToTarget = (targetCenter - firePosition).normalized;
+
+            // 플레이어와 벽을 모두 감지하는 합친 마스크
+            int combinedMask = targetMask | obstacleMask;
+
+            // 사거리(attackRange) 내에서 레이캐스트 판정
+            if (Physics.Raycast(firePosition, dirToTarget, out RaycastHit hit, attackRange, combinedMask))
+            {
+                // 가장 먼저 맞은 물체가 플레이어라면 (벽에 안 가려졌다면) 데미지 적용
+                if (((1 << hit.collider.gameObject.layer) & targetMask) != 0)
+                {
+                    IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+                    damageable?.TakeDamage(attackDamage, dirToTarget);
+                }
+            }
         }
         #endregion
     }
