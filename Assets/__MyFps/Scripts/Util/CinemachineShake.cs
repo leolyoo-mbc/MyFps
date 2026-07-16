@@ -6,6 +6,7 @@ namespace MyFps
     /// <summary>
     /// 화면 흔들림 효과 구현 싱글톤 클래스
     /// </summary>
+    [RequireComponent(typeof(CinemachineBasicMultiChannelPerlin))]
     public class CinemachineShake : Singleton<CinemachineShake>
     {
         #region Variables
@@ -28,7 +29,7 @@ namespace MyFps
         {
             // 이 스크립트가 붙어있는 게임 오브젝트에서 노이즈 컴포넌트를 가져옵니다.
             multiChannelPerlin = GetComponent<CinemachineBasicMultiChannelPerlin>();
-            
+
             if (multiChannelPerlin == null)
             {
                 Debug.LogWarning("CinemachineBasicMultiChannelPerlin 컴포넌트를 찾을 수 없습니다! 카메라에 Noise를 추가해주세요.");
@@ -45,7 +46,7 @@ namespace MyFps
             if (shakeTimer > 0)
             {
                 shakeTimer -= Time.deltaTime;
-                
+
                 // 시간이 지남에 따라 흔들림 강도를 서서히 줄입니다 (Decay)
                 if (multiChannelPerlin != null)
                 {
@@ -79,7 +80,7 @@ namespace MyFps
             // 노이즈 설정 적용
             multiChannelPerlin.AmplitudeGain = amplitude;
             multiChannelPerlin.FrequencyGain = frequency;
-            
+
             // 서서히 흔들림을 줄이기 위해 초기값과 시간 저장
             startingAmplitude = amplitude;
             shakeTimerTotal = time;
