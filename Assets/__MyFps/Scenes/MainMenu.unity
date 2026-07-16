@@ -7885,9 +7885,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1453132364}
   - {fileID: 152067707}
   - {fileID: 1346955084}
-  - {fileID: 1453132364}
   m_Father: {fileID: 2063157335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8496,7 +8496,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayScene01
+          m_StringArgument: Intro
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1776301401}
@@ -8794,7 +8794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7147729078212111417, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
       propertyPath: _startAlpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
       propertyPath: m_Pivot.x
