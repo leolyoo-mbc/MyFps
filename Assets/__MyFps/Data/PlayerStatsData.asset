@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21536ba8ab07eea47b9cce4e91546414, type: 3}
   m_Name: PlayerStatsData
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.PlayerStatsData
-  items: 53000000010000000000000000000000
+  items: 01000000010000000000000000000000
