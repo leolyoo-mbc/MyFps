@@ -1723,14 +1723,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 562235236}
     m_Modifications:
-    - target: {fileID: 681262108235768791, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: weight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241736057}
+    - target: {fileID: 4943946360808701002, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FadeTo
+      objectReference: {fileID: 0}
     - target: {fileID: 5638897114116580763, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1787,10 +1787,6 @@ PrefabInstance:
       propertyPath: extraCross
       value: 
       objectReference: {fileID: 1180228964}
-    - target: {fileID: 8891853613218834303, guid: f76e698e6be8f8c48b02f0f08f242d9c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14903,6 +14899,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256961154252195360, guid: bc4926d6a9f3f5a4c85eb166cca78a00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -15858,6 +15866,8 @@ GameObject:
   - component: {fileID: 2116449891}
   - component: {fileID: 2116449890}
   - component: {fileID: 2116449889}
+  - component: {fileID: 2116449894}
+  - component: {fileID: 2116449893}
   m_Layer: 0
   m_Name: Third Person Aim Camera
   m_TagString: Untagged
@@ -15967,6 +15977,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 81360717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116449893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116449888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8264c186a39ae284791bc510dae72fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyFps.CinemachineShake
+  amplitudeGain: 1
+  frequencyGain: 1
+  duration: 1
+--- !u!114 &2116449894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116449888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2140540982
 GameObject:
   m_ObjectHideFlags: 0

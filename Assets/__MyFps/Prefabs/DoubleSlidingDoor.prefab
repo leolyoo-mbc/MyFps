@@ -188,7 +188,7 @@ AudioSource:
   m_GameObject: {fileID: 2892599497166644384}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1433387824093794570, guid: b223386f7ebb6fa41954b5c4014433ac, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 089ede39b7c6649a881da9b3834212c9, type: 3}
   m_PlayOnAwake: 0
@@ -643,7 +643,7 @@ AudioSource:
   m_GameObject: {fileID: 7795226465722794265}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1433387824093794570, guid: b223386f7ebb6fa41954b5c4014433ac, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 089ede39b7c6649a881da9b3834212c9, type: 3}
   m_PlayOnAwake: 0
@@ -916,6 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlidingDoorOpen
   openSpeed: 2
   currentOpenAmount: 0
+  targetOpenAmount: 0
 --- !u!82 &3256234900456356099
 AudioSource:
   m_ObjectHideFlags: 0
@@ -925,7 +926,7 @@ AudioSource:
   m_GameObject: {fileID: 8419660702742339066}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1433387824093794570, guid: b223386f7ebb6fa41954b5c4014433ac, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 239996a5ea85b724a841c37b5ff83f2b, type: 3}
   m_PlayOnAwake: 0
