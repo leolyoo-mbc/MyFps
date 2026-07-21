@@ -5985,7 +5985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8574434d2425b1c41a25a63a6f38f7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyFps.PlayerHealth
-  maxHealth: 20
+  data: {fileID: 11400000, guid: b4b15010e14bcfe4483821a4c388822b, type: 2}
   damageFlash: {fileID: 4319606056148044239}
   flashDuration: 0.2
   hurtSounds:

@@ -7,12 +7,17 @@ namespace MyFps
     public class PlayerStatsData : ScriptableObject
     {
         [SerializeField] private int[] items;
+        [SerializeField] private float currentHealth;
+        [SerializeField] private float maxHealth = 20f;
+        
+        public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
+        public float MaxHealth { get => maxHealth; }
 
         public event Action<ItemType, int> OnItemChanged;
 
-        public int this[ItemType type] 
+        public int this[ItemType type]
         {
-            get 
+            get
             {
                 int index = (int)type;
                 if (items != null && index >= 0 && index < items.Length)
@@ -35,7 +40,7 @@ namespace MyFps
         public void ResetToDefault()
         {
             int count = (int)ItemType.Count;
-            
+
             // 배열이 없거나 크기가 다를 때만 1회 새로 할당 (GC 방지)
             if (items == null || items.Length != count)
             {
@@ -46,6 +51,7 @@ namespace MyFps
             {
                 items[i] = 0;
             }
+            currentHealth = maxHealth;
         }
 
     }

@@ -65,9 +65,28 @@ namespace MyFps
             StartCoroutine(FadeOut(sceneName));
         }
 
+        public void FadeTo(int sceneIndex)
+        {
+            if (_isFadingOut) return;
+            StartCoroutine(FadeOutIndex(sceneIndex));
+        }
+
         private IEnumerator FadeOut(string sceneName)
         {
             _isFadingOut = true;
+            yield return FadeOutRoutine();
+            SceneManager.LoadScene(sceneName);
+        }
+
+        private IEnumerator FadeOutIndex(int sceneIndex)
+        {
+            _isFadingOut = true;
+            yield return FadeOutRoutine();
+            SceneManager.LoadScene(sceneIndex);
+        }
+
+        private IEnumerator FadeOutRoutine()
+        {
             float timer = 0f; // 0 -> 1
 
             while (timer < _fadeDuration)
@@ -78,7 +97,6 @@ namespace MyFps
                 _fadeCanvasGroup.alpha = _fadeCurve.Evaluate(normalizedTime);
                 yield return null;
             }
-            SceneManager.LoadScene(sceneName);
         }
         #endregion
     }

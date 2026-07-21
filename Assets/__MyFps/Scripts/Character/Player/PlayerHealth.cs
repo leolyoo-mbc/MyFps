@@ -8,8 +8,7 @@ namespace MyFps
     {
         #region Variables
         [Header("Health Settings")]
-        [SerializeField] private float maxHealth = 20;
-        private float currentHealth;
+        [SerializeField] private PlayerStatsData data;
         private bool isDead = false;
 
         [Header("Damage Effects")]
@@ -26,23 +25,27 @@ namespace MyFps
         #region Unity Event Method
         void Awake()
         {
-            currentHealth = maxHealth;
+            // 게임 시작 시 체력이 0 이하라면 최대로 채워줌 (새 게임 등)
+            if (data != null && data.CurrentHealth <= 0)
+            {
+                data.CurrentHealth = data.MaxHealth;
+            }
         }
         #endregion
 
         #region Custom Method
         public void TakeDamage(float damage, UnityEngine.Vector3 hitDirection = default)
         {
-            if (isDead) return;
+            if (isDead || data == null) return;
 
-            currentHealth -= damage;
+            data.CurrentHealth -= damage;
 
             // 데미지 효과 실행
             PlayRandomHurtSound();
             TriggerDamageFlash();
             CinemachineShake.Instance.ShakeCamera();
 
-            if (currentHealth <= 0)
+            if (data.CurrentHealth <= 0)
             {
                 Die();
             }
